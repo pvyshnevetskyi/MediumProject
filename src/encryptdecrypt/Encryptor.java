@@ -14,4 +14,17 @@ public class Encryptor {
         }
         return sb.toString();
     }
+    public String encrypt(String message, int key) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < message.length(); i++) {
+            if (message.charAt(i) >= 'a' &&
+                message.charAt(i) <= 'z') {
+                sb.append((char)(message.charAt(i) + key <= 'z' ?
+                        message.charAt(i) + key : message.charAt(i) - 26 + key));
+            } else {
+                sb.append(message.charAt(i));
+            }
+        }
+        return sb.toString();
+    }
 }
