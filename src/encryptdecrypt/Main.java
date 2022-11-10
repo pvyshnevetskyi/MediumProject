@@ -4,10 +4,17 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Encryptor encryptor = new Encryptor();
         Scanner scanner = new Scanner(System.in);
-        String code = scanner.nextLine();
+        String typeOfOperation = scanner.nextLine();
+        String phrase = scanner.nextLine();
         int key = scanner.nextInt();
-        System.out.println(encryptor.encrypt(code, key));
+
+        if (typeOfOperation.equals("enc")) {
+            Encryptor encryptor = new Encryptor();
+            System.out.println(encryptor.encrypt(phrase, key));
+        } else if (typeOfOperation.equals("dec")){
+            Decryptor decryptor = new Decryptor();
+            System.out.println(decryptor.decrypt(phrase, key));
+        }
     }
 }
