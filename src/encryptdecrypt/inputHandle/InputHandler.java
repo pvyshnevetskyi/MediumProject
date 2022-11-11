@@ -1,4 +1,7 @@
-package encryptdecrypt;
+package encryptdecrypt.inputHandle;
+
+import encryptdecrypt.cryptors.Decryptor;
+import encryptdecrypt.cryptors.Encryptor;
 
 import java.io.*;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package encryptdecrypt;
+package encryptdecrypt.cryptors;
 
 public class Encryptor {
 
