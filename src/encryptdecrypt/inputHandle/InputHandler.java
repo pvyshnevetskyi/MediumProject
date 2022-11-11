@@ -1,7 +1,7 @@
 package encryptdecrypt.inputHandle;
 
-import encryptdecrypt.cryptors.Decryptor;
-import encryptdecrypt.cryptors.Encryptor;
+import encryptdecrypt.cryptors.Cryptor;
+import encryptdecrypt.factory.CryptorFactory;
 
 import java.io.*;
 import java.util.Scanner;
@@ -12,6 +12,7 @@ public class InputHandler {
     private String data = "";
     private String fileReadFrom;
     private String fileWriteTo;
+    private String algorithm = "shift";
 
     public void handleInput(String[] args) {
         for (int i = 0; i < args.length; i++) {
@@ -30,39 +31,37 @@ public class InputHandler {
             if (args[i].equals("-out")) {
                 fileWriteTo = args[i + 1];
             }
+            if (args[i].equals("-alg")) {
+                algorithm = args[i + 1];
+            }
         }
     }
 
-    public void encryptDecrypt() {
-        if (mode.equals("enc")) {
-            encrypt();
-        }
-        if (mode.equals("dec")) {
-            decrypt();
-        }
-    }
-
-    public void encrypt() {
-        Encryptor encryptor = new Encryptor();
+    public void crypt() {
+        Cryptor cryptor = CryptorFactory.getCryptor(mode);
         if (data.equals("")) {
             readFromFile();
         }
         if (fileWriteTo == null) {
-            System.out.println(encryptor.encrypt(data, key));
+            cryptInConsole(cryptor);
         } else {
-            writeIntoFile(encryptor.encrypt(data, key));
+            cryptInFile(cryptor);
         }
     }
 
-    public void decrypt() {
-        Decryptor decryptor = new Decryptor();
-        if (data.equals("")) {
-            readFromFile();
-        }
-        if (fileWriteTo == null) {
-            System.out.println(decryptor.decrypt(data, key));
+    public void cryptInConsole(Cryptor cryptor) {
+        if (algorithm.equals("unicode")) {
+            System.out.println(cryptor.unicode(data, key));
         } else {
-            writeIntoFile(decryptor.decrypt(data, key));
+            System.out.println(cryptor.shift(data, key));
+        }
+    }
+
+    public void cryptInFile(Cryptor cryptor) {
+        if (algorithm.equals("unicode")) {
+            writeIntoFile(cryptor.unicode(data, key));
+        } else {
+            writeIntoFile(cryptor.shift(data, key));
         }
     }
 
