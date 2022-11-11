@@ -85,5 +85,4 @@ public class InputHandler {
             System.out.println("Error " + exc.getMessage());
         }
     }
-
 }

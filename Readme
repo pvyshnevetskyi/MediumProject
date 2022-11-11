@@ -1,0 +1,18 @@
+Encryption-Decryption
+
+Program is used to encrypt and decrypt String values
+It is designed to work from terminal commands
+Also supports reading and writing into files
+
+List of supported arguments,
+arguments may be entered in any order:
+
+-mode [enc] [dec] || encode and decode mode (encode by default)
+-alg [shift] [unicode] || type of algorithm to use (shift by default)
+-key [Integer] || value by witch algorithm makes encryption and decryption
+-data [String] || data that will be processed
+-in [File path] || File to read from
+-out [File path] || File to wright to
+
+Example : java Main -mode enc -key 5 -data "Welcome to hyperskill!" -alg unicode
+Result : \jqhtrj%yt%m~ujwxpnqq&
