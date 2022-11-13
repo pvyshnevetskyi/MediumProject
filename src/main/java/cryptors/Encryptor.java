@@ -8,16 +8,22 @@ public class Encryptor extends Cryptor {
         for (int i = 0; i < message.length(); i++) {
             character = message.charAt(i);
             if (character >= 'a' && character <= 'z') {
-                sb.append((character + key) <= 'z' ?
-                        (char) (character + key) : (char) (character + key - 26));
+                sb.append(shiftLowerCaseCharacter(character, key));
             } else if (character >= 'A' && character <= 'Z') {
-                sb.append((character + key) <= 'Z' ?
-                        (char) (character + key) : (char) (character + key - 26));
+                sb.append(shiftUpperCaseCharacter(character, key));
             } else {
                 sb.append(character);
             }
         }
         return sb.toString();
+    }
+
+    private char shiftUpperCaseCharacter(char character, int key) {
+        return (char) ((character + key) <= 'Z' ? (character + key) : (character + key - 26));
+    }
+
+    private char shiftLowerCaseCharacter(char character, int key) {
+        return (char) ((character + key) <= 'z' ? (character + key) : (character + key - 26));
     }
 
     public String unicode(String message, int key) {

@@ -40,7 +40,7 @@ public class InputHandler {
 
     public void crypt() {
         Cryptor cryptor = CryptorFactory.getCryptor(mode);
-        if (data.equals("")) {
+        if (data.equals("") && fileReadFrom != null) {
             readFromFile();
         }
         if (fileWriteTo == null) {
@@ -77,7 +77,7 @@ public class InputHandler {
     private void readFromFile() {
         File file = new File(fileReadFrom);
         StringBuilder sb = new StringBuilder();
-        try (Scanner scanner = new Scanner(file)) {
+        try (Scanner scanner = new Scanner(file)){
             while (scanner.hasNext()) {
                 sb.append(scanner.nextLine());
             }
