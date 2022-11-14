@@ -1,6 +1,13 @@
 package cryptors;
 
 public class Encryptor implements Cryptor {
+    public String unicode(String message, int key) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < message.length(); i++) {
+            sb.append((char) (message.charAt(i) + key));
+        }
+        return sb.toString();
+    }
 
     public String shift(String message, int key) {
         StringBuilder sb = new StringBuilder();
@@ -24,13 +31,5 @@ public class Encryptor implements Cryptor {
 
     private char shiftLowerCaseCharacter(char character, int key) {
         return (char) ((character + key) <= 'z' ? (character + key) : (character + key - 26));
-    }
-
-    public String unicode(String message, int key) {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < message.length(); i++) {
-            sb.append((char) (message.charAt(i) + key));
-        }
-        return sb.toString();
     }
 }

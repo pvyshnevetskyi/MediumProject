@@ -74,7 +74,7 @@ public class InputHandler {
         }
     }
 
-    private void readFromFile() {
+    public void readFromFile() {
         File file = new File(fileReadFrom);
         StringBuilder sb = new StringBuilder();
         try (Scanner scanner = new Scanner(file)){
@@ -85,5 +85,8 @@ public class InputHandler {
         } catch (FileNotFoundException exc) {
             System.out.println("Error " + exc.getMessage());
         }
+    }
+    public String getData() {
+        return data;
     }
 }
