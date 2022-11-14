@@ -1,6 +1,6 @@
 package cryptors;
 
-public class Encryptor extends Cryptor {
+public class Encryptor implements Cryptor {
 
     public String shift(String message, int key) {
         StringBuilder sb = new StringBuilder();
